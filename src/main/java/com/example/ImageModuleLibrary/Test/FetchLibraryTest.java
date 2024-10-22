@@ -1,6 +1,7 @@
 package com.example.ImageModuleLibrary.Test;
 
 import com.example.ImageModuleLibrary.fetch.FetchLibrary;
+import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +20,20 @@ public class FetchLibraryTest {
         return fetchLibrary.getOriginalCdnUrl(id);
     }
 
-    @GetMapping("/multi")
+    @GetMapping("/resize")
     public String getResizedCdnUrlTest(@RequestParam("id") String id, @RequestParam("size") Integer size) {
         return fetchLibrary.getResizedCdnUrl(id, size);
     }
 
+    @GetMapping("/multi")
+    public List<String> getMultiOriginalCdnUrlTest(@RequestParam("id") List<String> id) {
+        return fetchLibrary.getMultiOriginalCdnUrl(id);
+    }
+
+
+    @GetMapping("/resize/multi")
+    public List<String> getMultiResizedCdnUrlTest(@RequestParam("id") List<String> id,
+                                                  @RequestParam("size") List<Integer> size) {
+        return fetchLibrary.getMultiResizedCdnUrl(id, size);
+    }
 }

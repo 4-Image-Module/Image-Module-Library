@@ -1,6 +1,8 @@
 package com.example.ImageModuleLibrary.fetch;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -27,5 +29,23 @@ public class FetchLibrary {
                 .build().toUri();
 
         return restTemplate.getForObject(uri, String.class);
+    }
+
+    public List<String> getMultiOriginalCdnUrl(List<String> uuids) {
+        List<String> cdnUrls = new ArrayList<>();
+        for (String uuid : uuids) {
+            String cdnUrl = getOriginalCdnUrl(uuid);
+            cdnUrls.add(cdnUrl);
+        }
+        return cdnUrls;
+    }
+
+    public List<String> getMultiResizedCdnUrl(List<String> uuids, List<Integer> sizes) {
+        List<String> cdnUrls = new ArrayList<>();
+        for (int i = 0; i < uuids.size(); i++) {
+            String cdnUrl = getResizedCdnUrl(uuids.get(i), sizes.get(i));
+            cdnUrls.add(cdnUrl);
+        }
+        return cdnUrls;
     }
 }
