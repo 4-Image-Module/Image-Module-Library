@@ -19,4 +19,9 @@ public class FetchLibraryTest {
         return fetchLibrary.getOriginalCdnUrl(id);
     }
 
+    @GetMapping("/multi")
+    public String getResizedCdnUrlTest(@RequestParam("id") String id, @RequestParam("size") Integer size) {
+        return fetchLibrary.getResizedCdnUrl(id, size);
+    }
+
 }

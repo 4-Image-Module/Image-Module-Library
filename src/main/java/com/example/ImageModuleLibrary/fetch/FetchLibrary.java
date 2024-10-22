@@ -19,4 +19,13 @@ public class FetchLibrary {
 
         return restTemplate.getForObject(uri, String.class);
     }
+
+    public String getResizedCdnUrl(String uuid, Integer size) {
+        URI uri = UriComponentsBuilder.fromHttpUrl(FETCH_ORIGINAL_CDN_URL)
+                .queryParam("id", uuid)
+                .queryParam("size", size)
+                .build().toUri();
+
+        return restTemplate.getForObject(uri, String.class);
+    }
 }
